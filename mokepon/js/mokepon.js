@@ -46,8 +46,9 @@ function seleccionarMascotaJugador() {
     }
 
     seleccionarMascotaEnemigo()
+
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSeleccionarAtaque.style.display = 'block'
+    sectionSeleccionarAtaque.style.display = 'flex'
 
 }
 

@@ -62,7 +62,22 @@ input {
     display: none;
 }
 
+#seleccionar-ataque {
+    flex-direction: column;
+    align-items: center;
+}
 
+.boton-de-ataque {
+    background-color: #17594A;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+    width: 100px;
+    color: white;
+}
 /*
 Combinación de colores seleccionados: 213363, 17594A, 8EAC50, D3D04F
 */
