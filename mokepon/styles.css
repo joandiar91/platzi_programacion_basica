@@ -78,6 +78,25 @@ input {
     width: 100px;
     color: white;
 }
+
+#mensajes {
+    width: 280px;
+    background: #8EAC50;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#boton-reiniciar {
+    border: none;
+    background-color: transparent; /*Esto no estaba en el código original, solo que la profesora no lo aplica porque su fondo es del mismo color del botón.*/
+    color: #213363;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
 /*
 Combinación de colores seleccionados: 213363, 17594A, 8EAC50, D3D04F
 */
