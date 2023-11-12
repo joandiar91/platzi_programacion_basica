@@ -7,9 +7,6 @@ const botonTierra = document.getElementById('boton-tierra')
 const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
-const inputHipodoge = document.getElementById('hipodoge')
-const inputCapipepo = document.getElementById('capipepo')
-const inputRatigueya = document.getElementById('ratigueya')
 const spanMascotaJugador = document.getElementById('mascota-jugador')
 
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
@@ -23,7 +20,9 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 let mokepones = []
-
+let inputHipodoge
+let inputCapipepo
+let inputRatigueya
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -73,7 +72,7 @@ function iniciarJuego() {
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
-            <input type="radio" name="mascota" id=${mokepon.nombre}>
+            <input type="radio" name="mascota" id=${mokepon.nombre} />
             <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
                 <p>${mokepon.nombre}</p>
                 <img src=${mokepon.foto} alt=${mokepon.nombre}>
@@ -81,9 +80,13 @@ function iniciarJuego() {
         `
 
         contenedorTarjetas.innerHTML += opcionDeMokepones
+
+        inputHipodoge = document.getElementById('Hipodoge')
+        inputCapipepo = document.getElementById('Capipepo')
+        inputRatigueya = document.getElementById('Ratigueya')
     })
 
-    sectionReiniciar.style.display = 'none'
+    sectionReiniciar.style.display = 'none' //esto no lo muestra en clase 51 min 1:22. Lo muestra en la línea 5 (min 2:17) dentro del bloque de constantes
 
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
@@ -98,13 +101,13 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
 
     if(inputHipodoge.checked) {
-        spanMascotaJugador.innerHTML = "Hipodoge"
+        spanMascotaJugador.innerHTML = inputHipodoge.id
     }
     else if(inputCapipepo.checked) {
-        spanMascotaJugador.innerHTML = "Capipepo"
+        spanMascotaJugador.innerHTML = inputCapipepo.id
     }
     else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = "Ratigueya"
+        spanMascotaJugador.innerHTML = inputRatigueya.id
     }
     else {
         alert("Elige una mascota")
@@ -116,17 +119,9 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    let mascotaAleatoria = aleatorio(1,3)
+    let mascotaAleatoria = aleatorio(0, mokepones.length - 1)
 
-    if (mascotaAleatoria == 1) {
-        spanMascotaEnemigo.innerHTML = "Hipodoge"
-    }
-    else if (mascotaAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = "Capipepo"
-    }
-    else {
-        spanMascotaEnemigo.innerHTML = "Ratigueya"
-    }
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
 }
 
 function ataqueFuego() {
