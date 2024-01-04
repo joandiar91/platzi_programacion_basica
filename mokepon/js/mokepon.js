@@ -32,6 +32,8 @@ let botonTierra
 let botones = []
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -212,43 +214,43 @@ function combate() {
             indexAmbosOponentes(index, index)
             crearMensaje("EMPATE")
         }
-        
-        // ESTE BLOQUE NO ESTÁ INCLUIDO EN LA CLASE, PERO CREO QUE ASÍ SE TERMINARÍA. FUNCIONÓ CUANDO LO PROBÉ
-        // else if (ataqueJugador === 'FUEGO' && ataqueEnemigo === 'TIERRA') {
-        //     indexAmbosOponentes(index, index)
-        //     crearMensaje("GANASTE")
-        //     vidasEnemigo--
-        //     spanVidasEnemigo.innerHTML = vidasEnemigo
-        // }
-        // else if (ataqueJugador === 'AGUA' && ataqueEnemigo === 'FUEGO'){
-        //     indexAmbosOponentes(index, index)
-        //     crearMensaje("GANASTE")
-        //     vidasEnemigo--
-        //     spanVidasEnemigo.innerHTML = vidasEnemigo
-        // }
-        // else if (ataqueJugador === 'TIERRA' && ataqueEnemigo === 'AGUA'){
-        //     indexAmbosOponentes(index, index)
-        //     crearMensaje("GANASTE")
-        //     vidasEnemigo--
-        //     spanVidasEnemigo.innerHTML = vidasEnemigo
-        // }
-        // else {
-        //     indexAmbosOponentes(index, index)
-        //     crearMensaje("PERDISTE")
-        //     vidasJugador--
-        //     spanVidasJugador.innerHTML = vidasJugador
-        // }
-        
+        else if (ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') {
+            indexAmbosOponentes(index, index)
+            crearMensaje("GANASTE")
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }
+        else if (ataqueJugador[index] === 'AGUA' && ataqueEnemigo[index] === 'FUEGO'){
+            indexAmbosOponentes(index, index)
+            crearMensaje("GANASTE")
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }
+        else if (ataqueJugador[index] === 'TIERRA' && ataqueEnemigo[index] === 'AGUA'){
+            indexAmbosOponentes(index, index)
+            crearMensaje("GANASTE")
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }
+        else {
+            indexAmbosOponentes(index, index)
+            crearMensaje("PERDISTE")
+            victoriasEnemigo++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo
+        }
     }
 
     revisarVidas()
 }
 
 function revisarVidas() {
-    if (vidasEnemigo == 0) {
+    if (victoriasJugador === victoriasEnemigo) {
+        crearMensajeFinal("Esto fue un empate")
+    }
+    else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeFinal("¡FELICITACIONES! Ganaste 🥳")
     }
-    else if (vidasJugador == 0) {
+    else {
         crearMensajeFinal("Lo siento, perdiste 😢")
     }
 }
