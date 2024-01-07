@@ -44,17 +44,29 @@ let lienzo = mapa.getContext("2d")
 let intervalo 
 let mapaBackground = new Image()
 mapaBackground.src = './assets/mokemap.png'
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 750
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
 
 class Mokepon {
-    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 40
         this.alto = 40
+        this.x = aleatorio(0, mapa.width - this.ancho)
+        this.y = aleatorio(0, mapa.height - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -76,9 +88,9 @@ let hipodoge = new Mokepon ('Hipodoge', './assets/hipodoge.png', 5, './assets/hi
 let capipepo = new Mokepon ('Capipepo', './assets/capipepo.png', 5, './assets/capipepo_head.png')
 let ratigueya = new Mokepon ('Ratigueya', './assets/ratigueya.png', 5, './assets/ratigueya_head.png')
 
-let hipodogeEnemigo = new Mokepon ('Hipodoge', './assets/hipodoge.png', 5, './assets/hipodoge_head.png', 180, 430)
-let capipepoEnemigo = new Mokepon ('Capipepo', './assets/capipepo.png', 5, './assets/capipepo_head.png', 150, 95)
-let ratigueyaEnemigo = new Mokepon ('Ratigueya', './assets/ratigueya.png', 5, './assets/ratigueya_head.png' , 710, 400)
+let hipodogeEnemigo = new Mokepon ('Hipodoge', './assets/hipodoge.png', 5, './assets/hipodoge_head.png')
+let capipepoEnemigo = new Mokepon ('Capipepo', './assets/capipepo.png', 5, './assets/capipepo_head.png')
+let ratigueyaEnemigo = new Mokepon ('Ratigueya', './assets/ratigueya.png', 5, './assets/ratigueya_head.png')
 
 hipodoge.ataques.push(
     {nombre: '💧', id: 'boton-agua'},
@@ -402,8 +414,7 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width= 800
-    mapa.height = 600
+    
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
 
