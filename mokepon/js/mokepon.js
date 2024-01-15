@@ -390,6 +390,9 @@ function pintarCanvas () {
         mapa.height
     )
     mascotaJugadorObjeto.pintarMokepon()
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+
     capipepoEnemigo.pintarMokepon()
     hipodogeEnemigo.pintarMokepon()
     ratigueyaEnemigo.pintarMokepon()
@@ -401,6 +404,19 @@ function pintarCanvas () {
         revisarColision(capipepoEnemigo)
         revisarColision(ratigueyaEnemigo)
     }
+}
+
+function enviarPosicion(x,y) {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,  // Poner solo "x" es una manera de simplificar "x: x" (misma clave, mismo valor)
+            y
+        })
+    })
 }
 
 function moverArriba() {
